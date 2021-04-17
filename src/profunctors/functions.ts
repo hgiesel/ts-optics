@@ -1,6 +1,8 @@
 import { Tuple, Either, isRight } from "../types";
 import { Strong, Choice } from "./profunctors";
 
+/***** (->) *****/
+
 const dimap = <T, U, S, V>(l: (s: S) => T, r: (u: U) => V, f: (t: T) => U) => (
   s: S
 ): V => r(f(l(s)));
@@ -14,8 +16,7 @@ const rightChoice = <A, B, C>(f: (a: A) => B) => (
 ): Either<C, B> =>
   isRight(either) ? [true, f(either[1])] : [false, either[1]];
 
-export default new (class<T, U>
-  implements Strong<T, U>, Choice<T, U> {
+export default new (class<T, U> implements Strong<T, U>, Choice<T, U> {
   dimap = dimap;
   firstStrong = firstStrong;
   rightChoice = rightChoice;

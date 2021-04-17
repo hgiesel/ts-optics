@@ -27,7 +27,7 @@ const tsconfigDist = {
 
 export default (args) => {
   const destination = { file: "dist/ts-optics.min.js" };
-  const format = "esm"; // 'iife'
+  const format = "iife";
 
   const plugins = [
     nodeResolve(),
@@ -43,7 +43,7 @@ export default (args) => {
   return {
     input: "index.ts",
     output: {
-      name: "ts-optics",
+      name: "optics",
       ...destination,
       format,
       sourcemap: true,

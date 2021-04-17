@@ -1,1 +1,1 @@
-console.log("test");
+export { default as ix } from "./src/operations/ix";
