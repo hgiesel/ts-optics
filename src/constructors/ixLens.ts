@@ -1,5 +1,5 @@
 import { Tuple } from "../types";
-import lens from "../constructors/lens";
+import lens from "./lens";
 
 /***** Lens [a] a *****/
 export default <S extends A[], A>(

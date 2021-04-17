@@ -1,5 +1,5 @@
 import { Either, Tuple } from "../types";
-import affineTraversal from "../constructors/affineTraversal";
+import affineTraversal from "./affineTraversal";
 
 /***** AffineTraversal [a] a *****/
 export default <S extends A[], A>(
