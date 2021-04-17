@@ -1,21 +1,21 @@
-import { Either, Tuple } from "../types";
-import affineTraversal from "./affineTraversal";
+import type { Either, Tuple } from "../types";
+import affineTraversal, { AffineTraversal } from "./affineTraversal";
 
 /***** AffineTraversal [a] a *****/
 export default <S extends A[], A>(
   index: number
-): ((f: (a: A) => A) => (s: S) => S) => {
+): AffineTraversal<S, S, A, A> => {
   const getter = (vals: S): Either<S, A> => {
     return typeof vals[index] !== "undefined"
       ? [true, vals[index]]
       : [false, vals];
   };
 
-  const setter = (vals: Tuple<S, A>): S => {
-    const newVals = vals[0].slice();
-    newVals[index] = vals[1];
+  const setter = ([vals, val]: Tuple<S, A>): S => {
+    const newVals = vals.slice();
+    newVals[index] = val;
     return newVals as S;
   };
 
-  return (f: (a: A) => A): ((s: S) => S) => affineTraversal(getter, setter, f);
+  return affineTraversal(getter, setter);
 };

@@ -23,7 +23,7 @@ const rightChoice = <A, B, C>(f: (a: A) => B) => (
   either: Either<C, A>
 ): Either<Unit, B> => (isRight(either) ? [true, f(either[1])] : [false, unit]);
 
-export default new (class<T, U> implements Strong<T, U>, Choice<T, U> {
+export default new (class implements Strong, Choice {
   dimap = dimap as any;
   firstStrong = firstStrong as any;
   rightChoice = rightChoice as any;

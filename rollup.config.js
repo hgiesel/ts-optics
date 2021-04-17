@@ -43,10 +43,11 @@ export default (args) => {
   return {
     input: "index.ts",
     output: {
-      name: "optics",
+      name: "globalThis",
       ...destination,
       format,
       sourcemap: true,
+      extend: true,
     },
     plugins,
   };

@@ -1,10 +1,8 @@
-import { Tuple } from "../types";
-import lens from "./lens";
+import type { Tuple } from "../types";
+import lens, { Lens } from "./lens";
 
 /***** Lens [a] a *****/
-export default <S extends A[], A>(
-  index: number
-): ((f: (a: A) => A) => (s: S) => S) => {
+export default <S extends A[], A>(index: number): Lens<S, S, A, A> => {
   const getter = (vals: S): A => {
     return vals[index];
   };
@@ -15,5 +13,5 @@ export default <S extends A[], A>(
     return newVals as S;
   };
 
-  return (f: (a: A) => A): ((s: S) => S) => lens(getter, setter, f);
+  return lens(getter, setter);
 };
