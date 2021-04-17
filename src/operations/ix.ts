@@ -1,12 +1,14 @@
-import { Tuple } from "../types";
-import lens from "../constructors/lens";
+import { Either, Tuple } from "../types";
+import affineTraversal from "../constructors/affineTraversal";
 
-/***** Lens [a] a *****/
+/***** AffineTraversal [a] a *****/
 export default <S extends A[], A>(
   index: number
 ): ((f: (a: A) => A) => (s: S) => S) => {
-  const getter = (vals: S): A => {
-    return vals[index];
+  const getter = (vals: S): Either<S, A> => {
+    return typeof vals[index] !== "undefined"
+      ? [true, vals[index]]
+      : [false, vals];
   };
 
   const setter = (vals: Tuple<S, A>): S => {
@@ -15,5 +17,5 @@ export default <S extends A[], A>(
     return newVals as S;
   };
 
-  return (f: (a: A) => A): ((s: S) => S) => lens(getter, setter, f);
+  return (f: (a: A) => A): ((s: S) => S) => affineTraversal(getter, setter, f);
 };
