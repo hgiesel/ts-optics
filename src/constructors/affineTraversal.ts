@@ -1,11 +1,9 @@
 import type { Strong, Choice } from "../profunctors";
 import type { Either, Tuple } from "../types";
+import type { Optic } from "./optic";
 import { isLeft } from "../types";
 
-export type AffineTraversal<S, T, A, B> = (
-  dict: Strong & Choice,
-  pab: (a: A) => B
-) => (s: S) => T;
+export type AffineTraversal<S, T, A, B> = Optic<S, T, A, B, Strong & Choice>;
 
 export default <S, T, A, B>(
   getter: (s: S) => Either<T, A>,

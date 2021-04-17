@@ -1,7 +1,8 @@
 import type { Tuple } from "../types";
 import type { Strong } from "../profunctors";
+import type { Optic } from "./optic";
 
-export type Lens<S, T, A, B> = (dict: Strong, pab: (a: A) => B) => (s: S) => T;
+export type Lens<S, T, A, B> = Optic<S, T, A, B, Strong>;
 
 export default <S, T, A, B>(
   getter: (s: S) => A,
