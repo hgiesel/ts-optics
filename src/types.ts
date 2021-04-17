@@ -9,3 +9,9 @@ export const isLeft = <F, S>(either: Either<F, S>): either is Left<F, S> =>
   !either[0];
 
 export type Tuple<F, S> = [F, S];
+
+export type Equals<T, S> = [T] extends [S]
+  ? [S] extends [T]
+    ? true
+    : false
+  : false;

@@ -1,10 +1,8 @@
-import { Tuple, Either, isRight } from "../types";
+import { Tuple, Either, isRight, Equals } from "../types";
 import { Strong, Choice } from "./profunctors";
 
 const unit = Symbol("unit");
 type Unit = typeof unit;
-
-type Equals<T, S> = [T] extends [S] ? ([S] extends [T] ? true : false) : false;
 
 /***** (Forget r) *****/
 
