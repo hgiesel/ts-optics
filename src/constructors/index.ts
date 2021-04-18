@@ -14,6 +14,8 @@ export { default as ixLens } from "./ixLens";
 export { default as prop } from "./prop";
 export { default as propLens } from "./propLens";
 
+export { default as prism } from "./prism";
+
 export { default as traversing1 } from "./traversing1";
 export { default as traversing } from "./traversing";
 
