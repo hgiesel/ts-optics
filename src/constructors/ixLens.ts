@@ -7,9 +7,9 @@ export default <S extends A[], A>(index: number): Lens<S, S, A, A> => {
     return vals[index];
   };
 
-  const setter = (vals: Tuple<S, A>): S => {
-    const newVals = vals[0].slice();
-    newVals[index] = vals[1];
+  const setter = ([vals, val]: Tuple<S, A>): S => {
+    const newVals = [...vals];
+    newVals[index] = val;
     return newVals as S;
   };
 

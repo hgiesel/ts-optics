@@ -1,6 +1,7 @@
-const fmap = <A, B>(f: (a: A) => B) => (xs: A[]): B[] => {
-  return xs.map(f);
-};
+import traversing from "./traversing";
 
-/* Traversal<F<A>,F<B>,A,B> */
-export default <A, B>(f: (a: A) => B) => fmap(f);
+/***** Traversal' s a *****/
+export default traversing(
+  <S extends A[], A>(f: (a: A) => A[], s: S): S[] =>
+    [s.map((a: A) => f(a)[0])] as S[],
+);

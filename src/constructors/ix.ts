@@ -12,7 +12,7 @@ export default <S extends A[], A>(
   };
 
   const setter = ([vals, val]: Tuple<S, A>): S => {
-    const newVals = vals.slice();
+    const newVals = [...vals];
     newVals[index] = val;
     return newVals as S;
   };
