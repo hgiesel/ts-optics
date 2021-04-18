@@ -1,8 +1,5 @@
-import { Tuple, Either, isRight, Equals } from "../types";
+import { Tuple, Either, isRight, Equals, Unit, unit } from "../types";
 import { Strong, Choice } from "./profunctors";
-
-const unit = Symbol("unit");
-type Unit = typeof unit;
 
 /***** (Forget r) *****/
 

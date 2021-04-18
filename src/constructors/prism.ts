@@ -4,6 +4,8 @@ import type { Optic } from "./optic";
 
 export type Prism<S, T, A, B> = Optic<S, T, A, B, Choice>;
 
+// TODO: should be `prism build match = dimap match (either pure (fmap build)) . right'`
+// instead of `prism build match = dimap match (either id build) . right'`
 export default <S, T, A, B>(
   build: (b: B) => T,
   match: (s: S) => Either<T, A>,

@@ -1,3 +1,6 @@
+export type Unit = typeof unit;
+export const unit = Symbol("unit");
+
 export type Left<L, _R> = [false, L];
 export type Right<_L, R> = [true, R];
 export type Either<L, R> = Left<L, R> | Right<L, R>;
