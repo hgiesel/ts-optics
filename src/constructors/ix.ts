@@ -1,5 +1,5 @@
 import type { Either, Tuple } from "../types";
-import affineTraversal, { AffineTraversal } from "./affineTraversal";
+import affineTraversing, { AffineTraversal } from "./affineTraversing";
 
 /***** AffineTraversal [a] a *****/
 export default <S extends A[], A>(
@@ -17,5 +17,5 @@ export default <S extends A[], A>(
     return newVals as S;
   };
 
-  return affineTraversal(getter, setter);
+  return affineTraversing(getter, setter);
 };

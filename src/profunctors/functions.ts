@@ -1,5 +1,5 @@
 import { Tuple, Either, isRight } from "../types";
-import { Strong, Choice } from "./profunctors";
+import { Strong, Traversing } from "./profunctors";
 
 /***** (->) *****/
 
@@ -16,8 +16,14 @@ const rightChoice = <A, B, C>(f: (a: A) => B) => (
 ): Either<C, B> =>
   isRight(either) ? [true, f(either[1])] : [false, either[1]];
 
-export default new (class implements Strong, Choice {
+const wander = <S, T, A, B>(f: (f_: (a: A) => B[], s: S) => T[]) => (
+  g: (a: A) => B
+) => (s: S): T => f((a: A) => [g(a)], s)[0];
+
+export default new (class implements Strong, Traversing {
   dimap = dimap;
   firstStrong = firstStrong;
   rightChoice = rightChoice;
+  wander = wander;
+  wander1 = wander;
 })();
