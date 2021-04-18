@@ -3,7 +3,7 @@ import affineTraversing, { AffineTraversal } from "./affineTraversing";
 
 /***** AffineTraversal [a] a *****/
 export default <S extends A[], A>(
-  index: number
+  index: number,
 ): AffineTraversal<S, S, A, A> => {
   const getter = (vals: S): Either<S, A> => {
     return typeof vals[index] !== "undefined"

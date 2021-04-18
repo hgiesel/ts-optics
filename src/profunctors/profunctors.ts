@@ -4,7 +4,7 @@ export interface Profunctor {
   dimap: <T, U, S, V>(
     l: (s: S) => T,
     r: (u: U) => V,
-    f: (t: T) => U
+    f: (t: T) => U,
   ) => (s: S) => V;
 }
 
@@ -16,7 +16,7 @@ type Second = <A, T, U>(f: (t: T) => T) => (tuple: Tuple<A, T>) => Tuple<A, U>;
 export interface Bifunctor {
   bimap: <A, B, T, U>(
     f: (a: A) => B,
-    g: (t: T) => U
+    g: (t: T) => U,
   ) => (tuple: Tuple<A, T>) => Tuple<B, U>;
   first?: First;
   second?: Second;
@@ -30,7 +30,7 @@ export interface Strong extends Profunctor {
 /***** Right ~ Left *****/
 
 type Right = <T, U, E>(
-  f: (t: T) => U
+  f: (t: T) => U,
 ) => (either: Either<E, T>) => Either<E, U>;
 type Left = <T, U, E>(f: (t: T) => U) => (either: Either<T, E>) => Either<U, E>;
 
@@ -48,7 +48,7 @@ export interface Choice extends Profunctor {
 /***** Traversing *****/
 
 type Wander = <S, T, A, B>(
-  f: (f_: (a: A) => B[], s: S) => T[]
+  f: (f_: (a: A) => B[], s: S) => T[],
 ) => (g: (a: A) => B) => (s: S) => T;
 type Traverse = <T, U>(f: (t: T) => U) => (ts: T[]) => U[];
 

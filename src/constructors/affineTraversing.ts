@@ -7,10 +7,10 @@ export type AffineTraversal<S, T, A, B> = Optic<S, T, A, B, Strong & Choice>;
 
 export default <S, T, A, B>(
   getter: (s: S) => Either<T, A>,
-  setter: (vals: Tuple<S, B>) => T
+  setter: (vals: Tuple<S, B>) => T,
 ): AffineTraversal<S, T, A, B> => <D extends Strong & Choice>(
   dict: D,
-  pab: (a: A) => B
+  pab: (a: A) => B,
 ): ((s: S) => T) => {
   const f0 = (s: S): Tuple<Either<T, A>, S> => [getter(s), s];
   const f1 = (vals: Tuple<Either<T, B>, S>): T =>
